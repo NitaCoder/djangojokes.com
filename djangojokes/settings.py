@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-^web-@!!ek7x4rhry-78!y-z23rq@u-$mh7p=3$*rc2od0rrpo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+INTERNAL_IPS = [ # Necessary for the Debug Toolbar
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'private_storage',
+    'debug_toolbar',
 
     # Local apps
     'common.apps.CommonConfig',
@@ -63,6 +65,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware', # The Debug Toolbar
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

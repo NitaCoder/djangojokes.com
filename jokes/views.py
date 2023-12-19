@@ -110,8 +110,9 @@ class JokeListView(ListView):
         elif 'username' in self.kwargs: # Filter by joke creator
             username = self.kwargs['username']
             qs = qs.filter(user__username=username)
-        return qs.order_by(ordering)    
-    
+
+        return qs.prefetch_related('category', 'user').order_by(ordering)  
+        
 class JokeDetailView(DetailView):
     model = Joke
 
