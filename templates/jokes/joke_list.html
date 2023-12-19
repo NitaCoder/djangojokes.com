@@ -5,7 +5,6 @@
   <a class="btn btn-success btn-sm float-end" href="{% url 'jokes:create' %}">
     + New Joke
   </a>
-  <h2>Jokes</h2>
   <div class="row">
     <div class="col-12 col-md-2 col-lg-3">
       <h2>Jokes</h2>
@@ -100,6 +99,13 @@
               </a>
             </small>
             {% endif %}
+          </td>
+          <td>
+            <div id="rating-container" title="{{ joke.rating }}">
+              <div id="rating" 
+                style="width:{% widthratio joke.rating 10 100 %}%;"></div>
+            </div>
+            ({{ joke.num_votes }} vote{{ joke.num_votes|pluralize }})
           </td>
           </tr>
         {% endfor %}
